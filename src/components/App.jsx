@@ -21,12 +21,8 @@ export default function App() {
           element={<Programmes />}
         />
         <Route key={nanoid()} path="vocational" element={<Vocational />} />
-        {/* <Route
-            key={nanoid()}
-            path="admission"
-            element={<Admission/>}
-          /> 
-          <Route
+        <Route key={nanoid()} path="admission" element={<Admission />} />
+        {/*  <Route
             key={nanoid()}
             path="research"
             element={<Research/>}
