@@ -21,7 +21,7 @@ export default function NavBox() {
       <ul className="w-full h-full flex flex-col">
         <li className="cursor-pointer w-full h-full border-b-1 flex items-center border-blackcurrant-900">
           <NavLink
-            to="/"
+            to="/admin/dashboard"
             className={({ isActive }) =>
               `${
                 isActive ? "bg-blackcurrant-950" : ""
@@ -40,7 +40,7 @@ export default function NavBox() {
         </li>
         <li className="cursor-pointer w-full h-full border-b-1 flex items-center border-blackcurrant-900">
           <NavLink
-            to="/profile"
+            to="/admin/profile"
             className={({ isActive }) =>
               `${
                 isActive ? "bg-blackcurrant-950" : ""
@@ -59,7 +59,7 @@ export default function NavBox() {
         </li>
         <li className="cursor-pointer w-full h-full border-b-1 flex items-center border-blackcurrant-900">
           <NavLink
-            to="/siteSetting"
+            to="/admin/siteSetting"
             className={({ isActive }) =>
               `${
                 isActive ? "bg-blackcurrant-950" : ""
@@ -78,7 +78,7 @@ export default function NavBox() {
         </li>
         <li className="cursor-pointer w-full h-full border-b-1 flex items-center border-blackcurrant-900">
           <NavLink
-            to="/students"
+            to="/admin/students"
             className={({ isActive }) =>
               `${
                 isActive ? "bg-blackcurrant-950" : ""
@@ -97,7 +97,7 @@ export default function NavBox() {
         </li>
         <li className="cursor-pointer w-full h-full border-b-1 flex items-center border-blackcurrant-900">
           <NavLink
-            to="/teachers"
+            to="/admin/teachers"
             className={({ isActive }) =>
               `${
                 isActive ? "bg-blackcurrant-950" : ""
@@ -116,7 +116,7 @@ export default function NavBox() {
         </li>
         <li className="cursor-pointer w-full h-full border-b-1 flex items-center border-blackcurrant-900">
           <NavLink
-            to="/exam"
+            to="/admin/exam"
             className={({ isActive }) =>
               `${
                 isActive ? "bg-blackcurrant-950" : ""
@@ -133,7 +133,7 @@ export default function NavBox() {
         </li>
         <li className="cursor-pointer w-full h-full border-b-1 flex items-center border-blackcurrant-900">
           <NavLink
-            to="/mangeruser"
+            to="/admin/mangeruser"
             className={({ isActive }) =>
               `${
                 isActive ? "bg-blackcurrant-950" : ""
@@ -152,7 +152,7 @@ export default function NavBox() {
         </li>
         <li className="cursor-pointer w-full h-full border-b-1 flex items-center border-blackcurrant-900">
           <NavLink
-            to="/courses"
+            to="/admin/courses"
             className={({ isActive }) =>
               `${
                 isActive ? "bg-blackcurrant-950" : ""
@@ -171,7 +171,7 @@ export default function NavBox() {
         </li>
         <li className="cursor-pointer w-full h-full border-b-1 flex items-center border-blackcurrant-900">
           <NavLink
-            to="/marksheet"
+            to="/admin/marksheet"
             className={({ isActive }) =>
               `${
                 isActive ? "bg-blackcurrant-950" : ""
@@ -190,7 +190,7 @@ export default function NavBox() {
         </li>
         <li className="cursor-pointer w-full h-full flex items-center">
           <NavLink
-            to="/feesReport"
+            to="/admin/feesReport"
             className={({ isActive }) =>
               `${
                 isActive ? "bg-blackcurrant-950" : ""

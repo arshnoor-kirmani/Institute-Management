@@ -1,63 +1,46 @@
-import React, { useEffect, useState } from "react";
 import {
-  Student,
-  ChalkboardTeacher,
   Books,
-  CurrencyInr,
-  Printer,
-  DotsThree,
-  Devices,
-  ClockCountdown,
-  ClockClockwise,
   CalendarDots,
-  IdentificationBadge,
-  Trash,
+  ChalkboardTeacher,
+  ClockClockwise,
+  ClockCountdown,
+  CurrencyInr,
   Detective,
+  Devices,
+  DotsThree,
+  IdentificationBadge,
+  Printer,
+  Student,
+  Trash,
   UserFocus,
 } from "@phosphor-icons/react";
-import { database, setPendingStudent, STORAGE, userAuth } from "../../../app";
-import { useDispatch, useSelector } from "react-redux";
-import { Query } from "appwrite";
+import { nanoid } from "@reduxjs/toolkit";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
+
 export default function Dashboard() {
   // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-  const [dashboard_icon_size, setDashboard_icon_size] = useState(44);
-  const [dashboard_icon_weight, setDashboard_icon_weight] = useState("duotone");
-  const [dashboard_icon_color, setDashboard_icon_color] = useState("#352f44");
-  const [totalInfo, setTotalInfo] = useState({
-    TotalStudent: 9600,
-    TotalTeacher: 10,
-    TotalCourses: 20,
-    TotalPendingFees: 36054,
-  });
-  const [logingActivty, setLogingActivty] = useState([
-    {
-      DeviceName: "Windows",
-      LoginTime: "10:31 AM",
-      LogoutTime: "10:49 AM",
-      Date: "12/01/2025",
-      Username: "Arshnoor",
-      Status: false,
-    },
-    {
-      DeviceName: "Windows",
-      LoginTime: "09:26 AM",
-      LogoutTime: "10:49 AM",
-      Date: "13/01/2025",
-      Username: "Sarfaraz",
-      Status: true,
-    },
-  ]);
-  const [pendingStudents, setPendingStudents] = useState([]);
-  const [imageSrc, setImageSrc] = useState("#");
-  const dispatch = useDispatch();
+  const dashboard_icon_size = useSelector(
+    (state) => state.dashboard.dashboard_icon_size
+  );
+  const dashboard_icon_weight = useSelector(
+    (state) => state.dashboard.dashboard_icon_weight
+  );
+  const dashboard_icon_color = useSelector(
+    (state) => state.dashboard.dashboard_icon_color
+  );
+  const totalInfo = useSelector((state) => state.dashboard.totalInfo);
+  const pendingStudents = useSelector(
+    (state) => state.dashboard.pendingStudents
+  );
+  const logingActivty = useSelector((state) => state.dashboard.logingActivty);
   // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-  function getImageSrc(id) {
-    STORAGE.getFileView(id).then((res) => {
-      setImageSrc(res);
-    });
-  }
   function getDateTime(date) {
     var currentdate = new Date(date);
+    if (currentdate == "Invalid Date") {
+      return "-";
+    }
+
     var datetime = [
       (currentdate.getDate() > 9
         ? currentdate.getDate()
@@ -83,34 +66,14 @@ export default function Dashboard() {
     ];
     return datetime;
   }
-  // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-  useEffect(() => {
-    // Fetching data from Appwrite Database
-    database
-      .StudentLists([Query.greaterThan("pending_fees", 0)])
-      .then((students) => {
-        if (students) {
-          setPendingStudents(students.documents);
-          dispatch(setPendingStudent(students.documents));
-        }
-      });
-    // userAuth.loginUser("arhnoorkirmani@gmail.com", "test1234");
-    userAuth.getLoginList([Query.limit(10)]).then((res) => {
-      if (res) {
-        setLogingActivty(res.sessions);
-      }
-    });
-  }, []);
-  // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-  // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   return (
     <div className="p-5 flex flex-col gap-5">
-      <div className="border-2 border-blackcurrant-900 grid grid-cols-2 gap-3 p-3 rounded-md">
+      <div className="border-3 border-custom-500 bg-custom-100 grid grid-cols-2 gap-3 p-3 rounded-md">
         <div
           id="totalStudent"
-          className="rounded-md p-3 grid grid-cols-[15%_auto] gap-2 bg-blackcurrant-900"
+          className="rounded-md p-3 grid grid-cols-[15%_auto] gap-2 border-2 border-custom-300 cursor-pointer bg-custom-200"
         >
-          <div className="rounded bg-blackcurrant-500 flex justify-center items-center">
+          <div className="rounded bg-custom-200 flex justify-center items-center">
             <Student
               size={dashboard_icon_size || 44}
               weight={dashboard_icon_weight || "duotone"}
@@ -118,17 +81,17 @@ export default function Dashboard() {
             />
           </div>
           <div>
-            <span className="text-blackcurrant-300">Student</span>
-            <h1 className="text-blackcurrant-50">
+            <span className="text-custom-900">Student</span>
+            <h1 className="text-custom-800 font-semibold text-xl">
               {totalInfo.TotalStudent || 0}
             </h1>
           </div>
         </div>
         <div
           id="totalTeacher"
-          className="rounded-md p-3 grid grid-cols-[15%_auto] gap-2 bg-blackcurrant-900"
+          className="rounded-md p-3 grid grid-cols-[15%_auto] gap-2 border-2 border-custom-300 cursor-pointer bg-custom-200"
         >
-          <div className="rounded bg-blackcurrant-500 flex justify-center items-center">
+          <div className="rounded bg-custom-200 flex justify-center items-center">
             <ChalkboardTeacher
               size={dashboard_icon_size || 44}
               weight={dashboard_icon_weight || "duotone"}
@@ -136,17 +99,17 @@ export default function Dashboard() {
             />
           </div>
           <div>
-            <span className="text-blackcurrant-300">Teacher</span>
-            <h1 className="text-blackcurrant-50">
+            <span className="text-custom-900">Teacher</span>
+            <h1 className="text-custom-800 font-semibold text-xl">
               {totalInfo.TotalTeacher || 0}
             </h1>
           </div>
         </div>
         <div
           id="totalCourses"
-          className="rounded-md p-3 grid grid-cols-[15%_auto] gap-2 bg-blackcurrant-900"
+          className="rounded-md p-3 grid grid-cols-[15%_auto] gap-2 border-2 border-custom-300 cursor-pointer bg-custom-200"
         >
-          <div className="rounded bg-blackcurrant-500 flex justify-center items-center">
+          <div className="rounded bg-custom-200 flex justify-center items-center">
             <Books
               size={dashboard_icon_size || 44}
               weight={dashboard_icon_weight || "duotone"}
@@ -154,17 +117,17 @@ export default function Dashboard() {
             />
           </div>
           <div>
-            <span className="text-blackcurrant-300">Courses</span>
-            <h1 className="text-blackcurrant-50">
+            <span className="text-custom-900">Courses</span>
+            <h1 className="text-custom-800 font-semibold text-xl">
               {totalInfo.TotalCourses || 0}
             </h1>
           </div>
         </div>
         <div
           id="totalPendingFees"
-          className="rounded-md p-3 grid grid-cols-[15%_auto] gap-2 bg-blackcurrant-900"
+          className="rounded-md p-3 grid grid-cols-[15%_auto] gap-2 border-2 border-custom-300 cursor-pointer bg-custom-200"
         >
-          <div className="rounded bg-blackcurrant-500 flex justify-center items-center">
+          <div className="rounded bg-custom-200 flex justify-center items-center">
             <CurrencyInr
               size={dashboard_icon_size || 44}
               weight={dashboard_icon_weight || "duotone"}
@@ -172,8 +135,8 @@ export default function Dashboard() {
             />
           </div>
           <div>
-            <span className="text-blackcurrant-300">Pending Fees</span>
-            <h1 className="text-blackcurrant-50">
+            <span className="text-custom-900">Pending Fees</span>
+            <h1 className="text-custom-800 font-semibold text-xl">
               {totalInfo.TotalPendingFees || 0}
             </h1>
           </div>
@@ -182,12 +145,12 @@ export default function Dashboard() {
       {/*<<<<<<<<<<<<<<<<<<<<<<<<<<===Unpaid Students Section Start===>>>>>>>>>>>>>>>>>>>>>>>>*/}
       <div
         id="unPaidFeesContainer"
-        className="bg-blackcurrant-700 rounded-md border-2 border-blackcurrant-900 "
+        className="bg-custom-600 rounded-md border-2 border-custom-500 "
       >
-        <div id="title" className="text-blackcurrant-50 p-2">
+        <div id="title" className="text-custom-50 p-2">
           <h1>Unpaid Student</h1>
         </div>
-        <div id="InfoCatgory" className="w-full h-9 bg-blackcurrant-500 ">
+        <div id="InfoCatgory" className="w-full h-9 bg-custom-300 border-b-1 ">
           <ul className="list-none size-full grid grid-cols-[25%_repeat(6,12.5%)] items-center">
             <li className=" text-center">
               <span>Name</span>
@@ -215,26 +178,38 @@ export default function Dashboard() {
         <div id="students">
           {pendingStudents.length > 0 ? (
             pendingStudents?.map((student, index) => (
-              <div key={student.$id} className="">
-                <ul className="size-full grid grid-cols-[25%_repeat(6,12.5%)] items-center py-1 text-blackcurrant-200">
+              <div key={nanoid()} className="bg-custom-200">
+                <ul className="size-full grid grid-cols-[25%_repeat(6,12.5%)] items-center py-1 text-custom-900 font-semibold">
                   <li className="grid grid-cols-[30%_70%] items-center px-2 pl-8 py-1 hover:scale-101  duration-200 linear cursor-pointer">
                     <img
-                      src={imageSrc}
-                      alt=""
+                      src={student.imageSrc}
+                      alt="Student Profile"
                       className="size-10 object-cover rounded-full"
-                      onError={() => {
-                        getImageSrc(student.profile_img_id);
-                      }}
+                      // onError={() => {
+                      //   getImageSrc(student.profile_img_id);
+                      // }}
                     />
                     {student.full_name}
                   </li>
-                  <li className=" text-center py-1"> {student.roll_no}</li>
-                  <li className=" text-center py-1"> {student.course}</li>
-                  <li className=" text-center py-1"> {student.pending_fees}</li>
-                  <li className=" text-center py-1"> {student.gender}</li>
+                  <li className=" text-center py-1">
+                    {" "}
+                    {student.roll_no || "N/A"}
+                  </li>
+                  <li className=" text-center py-1">
+                    {" "}
+                    {student.course || "N/A"}
+                  </li>
+                  <li className=" text-center py-1">
+                    {" "}
+                    {student.pending_fees || "N/A"}
+                  </li>
+                  <li className=" text-center py-1">
+                    {" "}
+                    {student.gender || "N/A"}
+                  </li>
                   <li
                     className={` text-center py-1 ${
-                      student.status ? "text-green-400" : "text-red-400"
+                      student.status ? "text-green-500" : "text-red-400"
                     }`}
                   >
                     {student.status ? "Active" : "Not Active"}
@@ -259,14 +234,14 @@ export default function Dashboard() {
                         />
                         <div
                           id={`ActionOptions${index}`}
-                          className="ActionOptions absolute size-25 top-8 right-3 rounded-md bg-blackcurrant-900 hidden"
+                          className="ActionOptions absolute size-25 top-8 right-3 rounded-md bg-custom-900 hidden"
                         >
                           <ul className="size-full grid py-1">
-                            <li className="text-center text-sm p-1 grid grid-cols-[50%_20%] items-center gap-4 border-b-1 border-blackcurrant-950">
+                            <li className="text-center text-sm p-1 grid grid-cols-[50%_20%] items-center gap-4 border-b-1 border-custom-950">
                               Remove
                               <Trash size={20} color="#0d0c0e" weight="thin" />
                             </li>
-                            <li className="text-center text-sm p-1 grid grid-cols-[50%_20%] items-center gap-4 border-b-1 border-blackcurrant-950">
+                            <li className="text-center text-sm p-1 grid grid-cols-[50%_20%] items-center gap-4 border-b-1 border-custom-950">
                               {student.status ? "Deactive" : "Active"}
                               <Detective
                                 size={20}
@@ -291,20 +266,22 @@ export default function Dashboard() {
               </div>
             ))
           ) : (
-            <h1>No Unpaid Student</h1>
+            <h1 className="h-20 flex justify-center items-center text-custom-700 text-2xl font-semibold">
+              No Unpaid Student
+            </h1>
           )}
         </div>
       </div>
       {/*<<<<<<<<<<<<<<<<<<<<<<<<<<===Unpaid Students Section End===>>>>>>>>>>>>>>>>>>>>>>>>*/}
-      {/*<<<<<<<<<<<<<<<<<<<<<<<<<<===Login Activety Section Start===>>>>>>>>>>>>>>>>>>>>>>>>*/}
+      {/*<<<<<<<<<<<<<<<<<<<<<<<<<<====Login Activity Section End===>>>>>>>>>>>>>>>>>>>>>>>>*/}
       <div
         id="LoginActivety"
-        className="bg-blackcurrant-700 rounded-md border-2 border-blackcurrant-900 "
+        className="bg-custom-600 rounded-md border-2 border-custom-900 "
       >
-        <div id="title" className="text-blackcurrant-50 p-2">
-          <h1>Login Activety</h1>
+        <div id="title" className="text-custom-50 p-2">
+          <h1>Login Activity</h1>
         </div>
-        <div id="InfoCatgory" className="w-full h-9 bg-blackcurrant-500 ">
+        <div id="InfoCatgory" className="w-full h-9 bg-custom-300 border-b-1 ">
           <ul className="list-none size-full grid grid-cols-[18%_repeat(4,15.5%)_10%_10%] items-center">
             <li className="text-center flex items-center justify-center gap-1">
               <span>Device Name</span>
@@ -355,10 +332,10 @@ export default function Dashboard() {
           </ul>
         </div>
         {logingActivty?.map((res) => (
-          <div className="" key={Math.random()}>
-            <ul className="size-full grid grid-cols-[18%_repeat(4,15.5%)_10%_10%] items-center py-1 text-blackcurrant-200">
+          <div className="bg-custom-200" key={Math.random()}>
+            <ul className="size-full grid grid-cols-[18%_repeat(4,15.5%)_10%_10%] items-center py-1 text-custom-900">
               <li className="flex items-center cursor-pointer justify-center">
-                {res.osName} ({res.deviceName})
+                {res.osName} ({res.deviceName || "-"})
               </li>
               <li className=" text-center py-1">
                 {getDateTime(res.$updatedAt)[1]}
@@ -391,7 +368,7 @@ export default function Dashboard() {
           </div>
         ))}
       </div>
-      {/*<<<<<<<<<<<<<<<<<<<<<<<<<<===Unpaid Students Section End===>>>>>>>>>>>>>>>>>>>>>>>>*/}
+      {/*<<<<<<<<<<<<<<<<<<<<<<<<<<====Login Activity Section End===>>>>>>>>>>>>>>>>>>>>>>>>*/}
     </div>
   );
 }
