@@ -2,7 +2,7 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Home, Weblayout, Programmes, About, Vocational } from "./Web";
-import { AdminLayout, Dashboard } from "./Admin";
+import { AdminLayout, Dashboard, Profile } from "./Admin";
 import { nanoid } from "@reduxjs/toolkit";
 
 export default function App() {
@@ -74,7 +74,7 @@ export default function App() {
       </Route>
       <Route path="/admin" element={<AdminLayout />}>
         <Route path="dashboard" element={<Dashboard />} />
-        <Route path="profile" element={<h1>profile</h1>} />
+        <Route path="profile" element={<Profile />} />
         <Route path="sitesetting" element={<h1>siteSetting</h1>} />
         <Route path="students" element={<h1>students</h1>} />
         <Route path="teachers" element={<h1>teachers</h1>} />
@@ -84,6 +84,12 @@ export default function App() {
         <Route path="marksheet" element={<h1>marksheet</h1>} />
         <Route path="feesreport" element={<h1>feesReport</h1>} />
       </Route>
+      <Route
+        path="admin/forgot-password"
+        element={
+          <h1 className="text-4xl font-bold text-center">Forget Password</h1>
+        }
+      />
       {/* <Route path="/about" element={<About />} /> */}
       {/* <Route path="/dashboard" element={<Dashboard />}>
         <Route path="profile" element={<Profile />} />

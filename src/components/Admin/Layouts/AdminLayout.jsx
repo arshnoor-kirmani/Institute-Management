@@ -9,7 +9,7 @@ export default function AdminLayout() {
       <Header />
       <div className=" w-full h-full grid grid-cols-[17%_83%]">
         <NavBox></NavBox>
-        <div className=" w-full h-full overflow-x-hidden overflow-y-auto">
+        <div className=" w-full h-full overflow-x-hidden overflow-y-auto px-1.5">
           <Outlet></Outlet>
         </div>
       </div>

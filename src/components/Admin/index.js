@@ -2,4 +2,5 @@
 // ======================
 import AdminLayout from "./Layouts/AdminLayout";
 import Dashboard from "./Pages/Dashboard/Dashboard";
-export { AdminLayout, Dashboard };
+import Profile from "./Pages/Profile/Profile";
+export { AdminLayout, Dashboard, Profile };
