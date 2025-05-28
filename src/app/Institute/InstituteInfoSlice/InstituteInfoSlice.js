@@ -1,6 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   instituteName: "Hope Group of Institutions",
+  owner: "Snajay Dheeman",
+  ownerProfileurl: null,
   instituteShortName: "HGI",
   instituteLogo: "",
   instituteAddress:
@@ -24,6 +26,7 @@ const initialState = {
     name: "Snajay Dheeman",
     email: "snajay.dheeman@hope.edu.in",
     phone: "1234567890",
+    gender: "male",
   },
   instituteEstablishedYear: "2000",
 
@@ -52,6 +55,32 @@ const initialState = {
     phone: "1234567890",
     supportHours: "9 AM - 5 PM",
   },
+  models: {
+    Module: 36,
+    Lessons: 36,
+    Assignments: 36,
+    Quizzes: 36,
+    Exams: 36,
+    Teachers: 36,
+  },
+  websiteofficial: "https://hopeinstitutions.netlify.app",
+  routes: [
+    "/home",
+    "/about",
+    "/programmes",
+    "/vocational",
+    "/admission",
+    "/research",
+    "/placements",
+    "/studentzone",
+    "/lifehope",
+    "/admission2025",
+    "/downloads",
+    "/applynow",
+    "/studentlogin",
+    "/login",
+    "/contactus",
+  ],
 };
 const instituteInfoSlice = createSlice({
   name: "instituteInfo",
