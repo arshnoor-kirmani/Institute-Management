@@ -1,10 +1,9 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { Home, Weblayout } from "./Web";
-import { AdminLayout } from "./Admin";
+import { Home, Weblayout, Programmes, About, Vocational } from "./Web";
+import { AdminLayout, Dashboard } from "./Admin";
 import { nanoid } from "@reduxjs/toolkit";
-import { Programmes, About, Vocational } from "./Web";
 
 export default function App() {
   const NavBtnsValues = useSelector((state) => state.header.NavBtnsValues);
@@ -21,7 +20,7 @@ export default function App() {
           element={<Programmes />}
         />
         <Route key={nanoid()} path="vocational" element={<Vocational />} />
-        <Route key={nanoid()} path="admission" element={<Admission />} />
+        {/* <Route key={nanoid()} path="admission" element={<Admission />} /> */}
         {/*  <Route
             key={nanoid()}
             path="research"
@@ -73,10 +72,17 @@ export default function App() {
             element={<Contact Us/>}
           /> */}
       </Route>
-      <Route path="/dashboard" element={<AdminLayout />}>
-        <Route path="home" element={<h1>Home</h1>} />
-        <Route path="about" element={<h1>About</h1>} />
-        <Route path="contact" element={<h1>Contact</h1>} />
+      <Route path="/admin" element={<AdminLayout />}>
+        <Route path="dashboard" element={<Dashboard />} />
+        <Route path="profile" element={<h1>profile</h1>} />
+        <Route path="sitesetting" element={<h1>siteSetting</h1>} />
+        <Route path="students" element={<h1>students</h1>} />
+        <Route path="teachers" element={<h1>teachers</h1>} />
+        <Route path="exam" element={<h1>exam</h1>} />
+        <Route path="mangeruser" element={<h1>mangeruser</h1>} />
+        <Route path="courses" element={<h1>courses</h1>} />
+        <Route path="marksheet" element={<h1>marksheet</h1>} />
+        <Route path="feesreport" element={<h1>feesReport</h1>} />
       </Route>
       {/* <Route path="/about" element={<About />} /> */}
       {/* <Route path="/dashboard" element={<Dashboard />}>
