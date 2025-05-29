@@ -30,8 +30,8 @@ export default function Header() {
   // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<== JSX ===>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   return (
     <header className="w-full h-25 border-1">
-      <div className="border-1 border-custom-500 size-full bg-custom-100 py-1 px-2 ">
-        <div className="text-[.8rem] w-fit h-full flex gap-3 float-left items-center text-2xl px-2 py-1 border-1 rounded-xl cursor-pointer">
+      <div className="border-custom-500 size-full bg-custom-100 py-1 px-2 ">
+        <div className="text-[.8rem] w-fit h-full flex gap-3 float-left items-center text-2xl px-2 py-1 border-1 border-custom-900 rounded-xl cursor-pointer">
           <Link to="/admin/dashboard" className="size-full">
             <img
               src={LogoImgSrc[0]}
@@ -40,7 +40,7 @@ export default function Header() {
             />
           </Link>
         </div>
-        <div className="flex justify-evenly float-right w-60 h-full items-center mr-3 border-1">
+        <div className="flex justify-evenly float-right w-60 h-full items-center mr-3 ">
           <div
             className={`relative p-1.5 cursor-pointer flex items-center active:85 ${
               searchBtnActive

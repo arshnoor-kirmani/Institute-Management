@@ -3,10 +3,25 @@ import { nanoid } from "@reduxjs/toolkit";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-
 export default function Profile() {
   const ProfileData = useSelector((state) => state.instituteInfo);
   const [inputEdit, setinputEdit] = useState(true);
+  const [formData, setFormData] = useState({
+    name: ProfileData.owner || "",
+    specialty: ProfileData.instituteContactPerson.specialty || "",
+    email: ProfileData.instituteContactPerson.email || "",
+    phone: ProfileData.instituteContactPerson.phone || "",
+    gender: ProfileData.instituteContactPerson.gender || "",
+  });
+  console.log(formData);
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [id]: value,
+    }));
+  };
+
   return (
     <div className="w-full h-full grid items-center justify-center text-2xl grid-cols-[45%_50%] p-2 gap-5">
       <div
@@ -82,8 +97,13 @@ export default function Profile() {
               <label htmlFor="name">Name</label>
               <input
                 readOnly={inputEdit}
-                value={ProfileData.instituteContactPerson.name || ""}
-                className="border-custom-500 border-b-1 outline-0 size-full px-1 py-2 placeholder:text-custom-500 text-[1rem] placeholder:capitalize"
+                value={formData.name}
+                onChange={handleChange}
+                className={`border-custom-500 border-b-1 outline-0 size-full px-1 pl-2 py-2 placeholder:text-custom-500 text-[1rem] placeholder:capitalize ${
+                  inputEdit
+                    ? " bg-custom-300/50 text-custom-900/80"
+                    : "text-custom-900"
+                }`}
                 type="text"
                 id="name"
                 placeholder="Enter your name"
@@ -93,10 +113,15 @@ export default function Profile() {
               <label htmlFor="Speciailty">Speciailty</label>
               <input
                 readOnly={inputEdit}
-                value={ProfileData.instituteContactPerson.specialty || ""}
-                className="border-custom-500 border-b-1 outline-0 size-full px-1 py-2 placeholder:text-custom-500 text-[1rem] placeholder:capitalize"
+                value={formData.speciailty}
+                onChange={handleChange}
+                className={`border-custom-500 border-b-1 outline-0 size-full px-1 pl-2 py-2 placeholder:text-custom-500 text-[1rem] placeholder:capitalize ${
+                  inputEdit
+                    ? " bg-custom-300/50 text-custom-900/80"
+                    : "text-custom-900"
+                }`}
                 type="text"
-                id="Speciailty"
+                id="speciailty"
                 placeholder="Enter your Speciailty"
               />
             </div>
@@ -104,8 +129,13 @@ export default function Profile() {
               <label htmlFor="email">Email</label>
               <input
                 readOnly={inputEdit}
-                value={ProfileData.instituteContactPerson.email || ""}
-                className="border-custom-500 border-b-1 outline-0 size-full px-1 py-2 placeholder:text-custom-500 text-[1rem] placeholder:capitalize"
+                value={formData.email}
+                onChange={handleChange}
+                className={`border-custom-500 border-b-1 outline-0 size-full px-1 pl-2 py-2 placeholder:text-custom-500 text-[1rem] placeholder:capitalize ${
+                  inputEdit
+                    ? " bg-custom-300/50 text-custom-900/80"
+                    : "text-custom-900"
+                }`}
                 type="email"
                 id="email"
                 placeholder="Enter your email"
@@ -115,8 +145,13 @@ export default function Profile() {
               <label htmlFor="gender">gender</label>
               <input
                 readOnly={inputEdit}
-                value={ProfileData.instituteContactPerson.gender || ""}
-                className="border-custom-500 border-b-1 outline-0 size-full px-1 py-2 placeholder:text-custom-500 text-[1rem] placeholder:capitalize"
+                value={formData.gender}
+                onChange={handleChange}
+                className={`border-custom-500 border-b-1 outline-0 size-full px-1 pl-2 py-2 placeholder:text-custom-500 text-[1rem] placeholder:capitalize ${
+                  inputEdit
+                    ? " bg-custom-300/50 text-custom-900/80"
+                    : "text-custom-900"
+                }`}
                 type="text"
                 id="gender"
                 placeholder="Enter your gender"
@@ -126,8 +161,13 @@ export default function Profile() {
               <label htmlFor="phone">phone</label>
               <input
                 readOnly={inputEdit}
-                value={ProfileData.instituteContactPerson.phone || ""}
-                className="border-custom-500 border-b-1 outline-0 size-full px-1 py-2 placeholder:text-custom-500 text-[1rem] placeholder:capitalize"
+                value={formData.phone}
+                onChange={handleChange}
+                className={`border-custom-500 border-b-1 outline-0 size-full px-1 pl-2 py-2 placeholder:text-custom-500 text-[1rem] placeholder:capitalize ${
+                  inputEdit
+                    ? " bg-custom-300/50 text-custom-900/80"
+                    : "text-custom-900"
+                }`}
                 type="text"
                 id="phone"
                 placeholder="Enter your phone"
@@ -137,8 +177,13 @@ export default function Profile() {
               <label htmlFor="password">Password</label>
               <input
                 readOnly={inputEdit}
-                value={""}
-                className="border-custom-500 border-b-1 outline-0 size-full px-1 py-2 placeholder:text-custom-500 text-[1rem] placeholder:capitalize"
+                value={formData.password}
+                onChange={handleChange}
+                className={`border-custom-500 border-b-1 outline-0 size-full px-1 pl-2 py-2 placeholder:text-custom-500 text-[1rem] placeholder:capitalize ${
+                  inputEdit
+                    ? " bg-custom-300/50 text-custom-900/80"
+                    : "text-custom-900"
+                }`}
                 type="password"
                 id="password"
                 placeholder="Enter your password"
@@ -149,7 +194,7 @@ export default function Profile() {
                 onClick={() => setinputEdit(!inputEdit)}
                 className="text-md border rounded-md px-2 py-1 cursor-pointer hover:text-custom-50 hover:bg-custom-600 transition-all duration-300"
               >
-                Edit
+                {inputEdit ? "Edit" : "Save"}
               </button>
               <Link
                 className="text-sm underline underline-offset-2 text-custom-500 float-left"
