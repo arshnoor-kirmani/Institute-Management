@@ -2,7 +2,7 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Home, Weblayout, Programmes, About, Vocational } from "./Web";
-import { AdminLayout, Dashboard, Profile } from "./Admin";
+import { AdminLayout, Comming, Dashboard, Profile } from "./Admin";
 import { nanoid } from "@reduxjs/toolkit";
 
 export default function App() {
@@ -75,14 +75,14 @@ export default function App() {
       <Route path="/admin" element={<AdminLayout />}>
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="profile" element={<Profile />} />
-        <Route path="sitesetting" element={<h1>siteSetting</h1>} />
-        <Route path="students" element={<h1>students</h1>} />
-        <Route path="teachers" element={<h1>teachers</h1>} />
-        <Route path="exam" element={<h1>exam</h1>} />
-        <Route path="mangeruser" element={<h1>mangeruser</h1>} />
-        <Route path="courses" element={<h1>courses</h1>} />
-        <Route path="marksheet" element={<h1>marksheet</h1>} />
-        <Route path="feesreport" element={<h1>feesReport</h1>} />
+        <Route path="sitesetting" element={<Comming />} />
+        <Route path="students" element={<Comming />} />
+        <Route path="teachers" element={<Comming />} />
+        <Route path="exam" element={<Comming />} />
+        <Route path="mangeruser" element={<Comming />} />
+        <Route path="courses" element={<Comming />} />
+        <Route path="marksheet" element={<Comming />} />
+        <Route path="feesreport" element={<Comming />} />
       </Route>
       <Route
         path="admin/forgot-password"

@@ -86,4 +86,5 @@ const instituteInfoSlice = createSlice({
   name: "instituteInfo",
   initialState,
 });
+// export const { getProfileInfo } = instituteInfoSlice.actions;
 export default instituteInfoSlice.reducer;
