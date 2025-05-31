@@ -9,9 +9,8 @@ import {
   Vocational,
   Admission,
 } from "./Web";
-import { AdminLayout } from "./Admin";
+import { AdminLayout, Comming, Dashboard, Profile, Students } from "./Admin";
 import { nanoid } from "@reduxjs/toolkit";
-
 export default function App() {
   const NavBtnsValues = useSelector((state) => state.header.NavBtnsValues);
   const ImportantBtns = useSelector((state) => state.header.ImportantBtns);
@@ -27,7 +26,7 @@ export default function App() {
           element={<Programmes />}
         />
         <Route key={nanoid()} path="vocational" element={<Vocational />} />
-        <Route key={nanoid()} path="admission" element={<Admission />} />
+        {/* <Route key={nanoid()} path="admission" element={<Admission />} /> */}
         {/*  <Route
             key={nanoid()}
             path="research"
@@ -79,11 +78,24 @@ export default function App() {
             element={<Contact Us/>}
           /> */}
       </Route>
-      <Route path="/dashboard" element={<AdminLayout />}>
-        <Route path="home" element={<h1>Home</h1>} />
-        <Route path="about" element={<h1>About</h1>} />
-        <Route path="contact" element={<h1>Contact</h1>} />
+      <Route path="/admin" element={<AdminLayout />}>
+        <Route path="dashboard" element={<Dashboard />} />
+        <Route path="profile" element={<Profile />} />
+        <Route path="sitesetting" element={<Comming />} />
+        <Route path="students" element={<Students />} />
+        <Route path="teachers" element={<Comming />} />
+        <Route path="exam" element={<Comming />} />
+        <Route path="mangeruser" element={<Comming />} />
+        <Route path="courses" element={<Comming />} />
+        <Route path="marksheet" element={<Comming />} />
+        <Route path="feesreport" element={<Comming />} />
       </Route>
+      <Route
+        path="admin/forgot-password"
+        element={
+          <h1 className="text-4xl font-bold text-center">Forget Password</h1>
+        }
+      />
       {/* <Route path="/about" element={<About />} /> */}
       {/* <Route path="/dashboard" element={<Dashboard />}>
         <Route path="profile" element={<Profile />} />
