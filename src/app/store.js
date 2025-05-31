@@ -5,7 +5,6 @@ import FooterSlice from "./webstore/FooterSlice/FooterSlice";
 import ProgrammeSlice from "./webstore/ProgrammeSlice/ProgrammeSlice";
 import InstituteInfoSlice from "./InstituteinfoSlice/InstituteInfoSlice";
 import DashboardSlice from "./AdminStore/DashboardSlice/DashboardSlice";
-import InstituteInfoSlice from "./Institute/InstituteinfoSlice/InstituteInfoSlice";
 const store = configureStore({
   reducer: {
     home: HomeSlice,
