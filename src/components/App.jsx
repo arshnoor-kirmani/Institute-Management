@@ -2,7 +2,7 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Home, Weblayout, Programmes, About, Vocational } from "./Web";
-import { AdminLayout, Comming, Dashboard, Profile } from "./Admin";
+import { AdminLayout, Comming, Dashboard, Profile, Students } from "./Admin";
 import { nanoid } from "@reduxjs/toolkit";
 
 export default function App() {
@@ -76,7 +76,7 @@ export default function App() {
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="profile" element={<Profile />} />
         <Route path="sitesetting" element={<Comming />} />
-        <Route path="students" element={<Comming />} />
+        <Route path="students" element={<Students />} />
         <Route path="teachers" element={<Comming />} />
         <Route path="exam" element={<Comming />} />
         <Route path="mangeruser" element={<Comming />} />
