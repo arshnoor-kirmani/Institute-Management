@@ -1,10 +1,16 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { Home, Weblayout } from "./Web";
+import {
+  Home,
+  Weblayout,
+  Programmes,
+  About,
+  Vocational,
+  Admission,
+} from "./Web";
 import { AdminLayout } from "./Admin";
 import { nanoid } from "@reduxjs/toolkit";
-import { Programmes, About, Vocational } from "./Web";
 
 export default function App() {
   const NavBtnsValues = useSelector((state) => state.header.NavBtnsValues);

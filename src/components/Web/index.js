@@ -5,4 +5,14 @@ import Home from "./Home/Home";
 import About from "./About/About";
 import Programmes from "./Programmes/Programmes";
 import Vocational from "./Vocational/Vocational";
-export { Home, Footer, Header, Weblayout, Programmes, About, Vocational };
+import Admission from "./Admission/Admission";
+export {
+  Home,
+  Footer,
+  Header,
+  Weblayout,
+  Programmes,
+  About,
+  Vocational,
+  Admission,
+};
