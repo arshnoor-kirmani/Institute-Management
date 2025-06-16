@@ -22,7 +22,7 @@ export default function Home() {
       <HeroSection images={ImageUrls} />
       <HomeSecondSection studentImage={studentImage} />
       <CourseSection courses={Courses} />
-      <LifeCardSection cards={LifeCard} />
+      {/* <LifeCardSection cards={LifeCard} /> */}
       <TraningValue_placementsSection
         tranings={traningValue}
         placements={placements}
